@@ -84,7 +84,7 @@ C:.
 |───bin
 │       tucil2-stima.exe                        # Executable program
 |───docs
-│       IF2211 Laporan Tugas Kecil 2.pdf        # Executable program
+│       IF2211 Laporan Tugas Kecil 2.pdf        # Laporan
 ├───src                                         # Source code utama program (package src)
 │       objviewer.go
 │       stats.go
