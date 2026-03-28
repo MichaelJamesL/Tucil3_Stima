@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 type Vec3 struct {
@@ -179,8 +180,24 @@ func BuildOctree(triangles []Triangle, cube Cube, depth int, maxDepth int) *Node
 
 	subCubes := splitCube8(cube)
 	node := &Node{}
-	for i, subCube := range subCubes {
-		node.Children[i] = BuildOctree(trianglesInCube, subCube, depth+1, maxDepth)
+
+	// Gunakan concurrency hanya di level atas (depth < 3)
+	// untuk menghindari overhead goroutine yang berlebihan
+	if depth < 3 {
+		var wg sync.WaitGroup
+		for i, subCube := range subCubes {
+			wg.Add(1)
+			go func(idx int, sc Cube) {
+				defer wg.Done()
+				node.Children[idx] = BuildOctree(trianglesInCube, sc, depth+1, maxDepth)
+			}(i, subCube)
+		}
+		wg.Wait()
+	} else {
+		// Di level dalam, jalankan secara sekuensial
+		for i, subCube := range subCubes {
+			node.Children[i] = BuildOctree(trianglesInCube, subCube, depth+1, maxDepth)
+		}
 	}
 
 	return node
