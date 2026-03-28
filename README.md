@@ -16,11 +16,11 @@ Alur kerja program utama (Voxelization):
 2. Menghitung bounding box yang melingkupi seluruh model
 3. Membangun pohon Octree secara rekursif dengan **concurrency** (goroutine pada level dangkal) untuk membagi ruang 3D dan mendeteksi area yang terisi model
 4. Mengumpulkan titik-titik pusat voxel dari daun-daun Octree
-5. Mengekspor hasil voxelisasi ke file `.obj` baru
+5. Mengekspor hasil voxelisasi ke file `voxelized.obj` baru
 
 ## Dependency
 
-Program ini ditulis dalam bahasa **Go (Golang)** dan hanya menggunakan **standard library**, tanpa dependency eksternal.
+Program ini ditulis dalam bahasa **Go (Golang)** dan hanya menggunakan **standard library** dan dependency eksternal.
 
 | Dependency         | Versi Minimum | Keterangan                    |
 |--------------------|---------------|-------------------------------|
