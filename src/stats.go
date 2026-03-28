@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"fmt"
@@ -7,8 +7,8 @@ import (
 )
 
 type OctreeStats struct {
-	NodesPerDepth   map[int]int
-	PrunedPerDepth  map[int]int
+	NodesPerDepth  map[int]int
+	PrunedPerDepth map[int]int
 }
 
 func countOctreeNodes(node *Node, depth int, stats *OctreeStats) {
@@ -33,8 +33,8 @@ func countOctreeNodes(node *Node, depth int, stats *OctreeStats) {
 
 // printStats menampilkan seluruh statistik voxelisasi ke CLI
 func printStats(voxelCount int, maxDepth int, outputPath string, elapsed time.Duration, root *Node) {
-	vertexCount := voxelCount * 8  // 8 vertex per voxel (kubus)
-	faceCount := voxelCount * 6    // 6 face per voxel (kubus)
+	vertexCount := voxelCount * 8 // 8 vertex per voxel (kubus)
+	faceCount := voxelCount * 6   // 6 face per voxel (kubus)
 
 	// Hitung statistik octree
 	stats := &OctreeStats{

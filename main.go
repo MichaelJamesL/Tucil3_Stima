@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"tucil2-stima/src"
+)
 
 // import "path/filepath"
 
@@ -12,11 +15,11 @@ func main() {
 	fmt.Scanln(&choice)
 	switch choice {
 	case 1:
-		ObjViewer()
+		src.ObjViewer()
 	case 2:
 		fmt.Println("Source Obj Filepath:")
 		var filepath string
 		fmt.Scanln(&filepath)
-		voxelization(filepath)
+		src.Voxelization(filepath)
 	}
 }

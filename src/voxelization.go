@@ -1,4 +1,4 @@
-package main
+package src
 
 import (
 	"bufio"
@@ -291,7 +291,7 @@ func exportVoxelsToOBJ(path string, voxels []Vec3, voxelSize float64) error {
 	return nil
 }
 
-func voxelization(path string) {
+func Voxelization(path string) {
 	startTime := time.Now()
 
 	vertices, triangles, err := readOBJ(path)
