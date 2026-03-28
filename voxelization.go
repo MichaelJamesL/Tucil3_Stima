@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
 
 type Vec3 struct {
@@ -291,6 +292,8 @@ func exportVoxelsToOBJ(path string, voxels []Vec3, voxelSize float64) error {
 }
 
 func voxelization(path string) {
+	startTime := time.Now()
+
 	vertices, triangles, err := readOBJ(path)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
@@ -305,11 +308,14 @@ func voxelization(path string) {
 	voxels := []Vec3{}
 	collectVoxelCenters(res, &voxels)
 
-	err = exportVoxelsToOBJ("voxelized.obj", voxels, voxelSize)
+	outputPath := "voxelized.obj"
+	err = exportVoxelsToOBJ(outputPath, voxels, voxelSize)
 	if err != nil {
 		fmt.Println("Error exporting OBJ:", err)
 		return
 	}
 
-	fmt.Println("Exported OBJ: voxelized.obj")
+	elapsed := time.Since(startTime)
+	// gunakan fungsi untuk menghasilkan output cli
+	printStats(len(voxels), depth, outputPath, elapsed, res)
 }
