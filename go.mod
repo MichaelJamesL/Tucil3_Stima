@@ -1,3 +1,3 @@
 module tucil2-stima
 
-go 1.26.1
+go 1.18

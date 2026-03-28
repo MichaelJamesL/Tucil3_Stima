@@ -1,7 +1,7 @@
 package main
 
-// import "fmt"
+import "path/filepath"
 
 func main() {
-	voxelization("28-pumpkin\\pumpkin\\pumpkin_.obj")
+	voxelization(filepath.Join("28-pumpkin", "pumpkin", "pumpkin_.obj"))
 }
